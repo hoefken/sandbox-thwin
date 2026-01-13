@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Admin-only write access, authenticated read
+    match /{document=**} {
+      allow read: if request.auth != null;
+      allow write: if false; // Will be updated with admin check
+    }
+  }
+}

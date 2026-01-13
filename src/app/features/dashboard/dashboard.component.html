@@ -1,0 +1,18 @@
+<div class="dashboard">
+  <h1>Dashboard</h1>
+  <p>Welcome, {{ user()?.email }}</p>
+
+  <section class="quick-actions">
+    <h2>Quick Actions</h2>
+    <div class="action-grid">
+      <a href="/trucks" class="action-card">
+        <span class="action-title">Manage Trucks</span>
+        <span class="action-description">View and edit truck inventory</span>
+      </a>
+      <a href="/stocktaking" class="action-card">
+        <span class="action-title">Start Stocktaking</span>
+        <span class="action-description">Begin a new inventory session</span>
+      </a>
+    </div>
+  </section>
+</div>

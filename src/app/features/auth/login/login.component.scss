@@ -1,0 +1,124 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  background: #f5f5f5;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    color: #003399;
+  }
+
+  p {
+    margin: 0.5rem 0 0;
+    color: #666;
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.error-message {
+  padding: 0.75rem;
+  background: #fee;
+  border: 1px solid #fcc;
+  border-radius: 4px;
+  color: #c00;
+  font-size: 0.875rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+
+  label {
+    font-weight: 500;
+    color: #333;
+  }
+
+  input {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+
+    &:focus {
+      outline: none;
+      border-color: #003399;
+      box-shadow: 0 0 0 2px rgba(0, 51, 153, 0.2);
+    }
+
+    &[aria-invalid='true'] {
+      border-color: #c00;
+    }
+  }
+}
+
+.field-error {
+  color: #c00;
+  font-size: 0.8125rem;
+}
+
+.password-input {
+  display: flex;
+  gap: 0.5rem;
+
+  input {
+    flex: 1;
+  }
+
+  .toggle-password {
+    padding: 0 0.75rem;
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8125rem;
+
+    &:hover {
+      background: #ddd;
+    }
+  }
+}
+
+.submit-button {
+  padding: 0.875rem;
+  background: #003399;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 0.5rem;
+
+  &:hover:not(:disabled) {
+    background: #002266;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
