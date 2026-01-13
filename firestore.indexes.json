@@ -1,4 +1,23 @@
 {
-  "indexes": [],
+  "indexes": [
+    {
+      "collectionGroup": "compartments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "truckId", "order": "ASCENDING" },
+        { "fieldPath": "order", "order": "ASCENDING" },
+        { "fieldPath": "name", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "items",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "compartmentId", "order": "ASCENDING" },
+        { "fieldPath": "category", "order": "ASCENDING" },
+        { "fieldPath": "name", "order": "ASCENDING" }
+      ]
+    }
+  ],
   "fieldOverrides": []
 }

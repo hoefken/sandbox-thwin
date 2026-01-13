@@ -1,0 +1,82 @@
+<div class="compartment-form-page">
+  <header class="page-header">
+    <a [routerLink]="['/trucks', truckId()]" class="back-link">&larr; Back to Truck</a>
+    <h1>{{ isEditMode() ? 'Edit Compartment' : 'New Compartment' }}</h1>
+  </header>
+
+  @if (error()) {
+    <div class="error-banner" role="alert">{{ error() }}</div>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-card">
+    <div class="form-group">
+      <label for="name">Name <span class="required">*</span></label>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        [attr.aria-invalid]="form.controls.name.invalid && form.controls.name.touched"
+        aria-describedby="name-error"
+      />
+      @if (form.controls.name.invalid && form.controls.name.touched) {
+        <span id="name-error" class="field-error">
+          @if (form.controls.name.errors?.['required']) {
+            Name is required
+          } @else if (form.controls.name.errors?.['maxlength']) {
+            Name must be less than 100 characters
+          }
+        </span>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        rows="3"
+        [attr.aria-invalid]="form.controls.description.invalid && form.controls.description.touched"
+        aria-describedby="description-error"
+      ></textarea>
+      @if (form.controls.description.invalid && form.controls.description.touched) {
+        <span id="description-error" class="field-error">
+          @if (form.controls.description.errors?.['maxlength']) {
+            Description must be less than 500 characters
+          }
+        </span>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="order">Display Order <span class="required">*</span></label>
+      <input
+        id="order"
+        type="number"
+        formControlName="order"
+        min="0"
+        [attr.aria-invalid]="form.controls.order.invalid && form.controls.order.touched"
+        aria-describedby="order-error"
+      />
+      @if (form.controls.order.invalid && form.controls.order.touched) {
+        <span id="order-error" class="field-error">
+          @if (form.controls.order.errors?.['required']) {
+            Order is required
+          } @else if (form.controls.order.errors?.['min']) {
+            Order must be 0 or greater
+          }
+        </span>
+      }
+    </div>
+
+    <div class="form-actions">
+      <a [routerLink]="['/trucks', truckId()]" class="btn btn-secondary">Cancel</a>
+      <button type="submit" class="btn btn-primary" [disabled]="loading()">
+        @if (loading()) {
+          Saving...
+        } @else {
+          {{ isEditMode() ? 'Update' : 'Create' }} Compartment
+        }
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  useEmulators: true,
+  useEmulators: false,
   firebase: {
     apiKey: 'AIzaSyAvXUoc8qT76llF3PUdtjtSYNRqkp6SyY0',
     authDomain: 'sandbox-thwin.firebaseapp.com',

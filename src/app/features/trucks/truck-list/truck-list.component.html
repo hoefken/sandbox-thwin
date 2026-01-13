@@ -1,0 +1,49 @@
+<div class="truck-list">
+  <header class="page-header">
+    <h1>Trucks</h1>
+    <a routerLink="new" class="btn btn-primary">Add Truck</a>
+  </header>
+
+  @if (trucks().length === 0) {
+    <div class="empty-state">
+      <p>No trucks yet. Add your first truck to get started.</p>
+    </div>
+  } @else {
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th class="actions-col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (truck of trucks(); track truck.id) {
+            <tr>
+              <td>
+                <a [routerLink]="[truck.id]" class="truck-link">{{ truck.name }}</a>
+              </td>
+              <td>{{ truck.description }}</td>
+              <td class="actions-col">
+                <a [routerLink]="[truck.id, 'edit']" class="btn btn-small">Edit</a>
+                <button
+                  type="button"
+                  class="btn btn-small btn-danger"
+                  [disabled]="deletingId() === truck.id"
+                  (click)="deleteTruck(truck)"
+                >
+                  @if (deletingId() === truck.id) {
+                    Deleting...
+                  } @else {
+                    Delete
+                  }
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

@@ -1,0 +1,141 @@
+.compartment-form-page {
+  padding: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 1.5rem;
+
+  h1 {
+    margin: 0.5rem 0 0;
+    font-size: 1.75rem;
+  }
+}
+
+.back-link {
+  font-size: 0.875rem;
+  color: #666;
+  text-decoration: none;
+
+  &:hover {
+    color: #003399;
+  }
+}
+
+.error-banner {
+  padding: 0.75rem 1rem;
+  background: #f8d7da;
+  border: 1px solid #f5c2c7;
+  border-radius: 4px;
+  color: #842029;
+  margin-bottom: 1rem;
+}
+
+.form-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.375rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+
+  .required {
+    color: #dc3545;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: #003399;
+      box-shadow: 0 0 0 2px rgba(0, 51, 153, 0.2);
+    }
+
+    &[aria-invalid='true'] {
+      border-color: #dc3545;
+
+      &:focus {
+        box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
+      }
+    }
+  }
+
+  input[type='number'] {
+    max-width: 120px;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+}
+
+.field-error {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  color: #dc3545;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.btn-primary {
+  background: #003399;
+  color: white;
+
+  &:hover:not(:disabled) {
+    background: #002266;
+  }
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+
+  &:hover:not(:disabled) {
+    background: #5c636a;
+  }
+}

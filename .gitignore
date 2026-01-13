@@ -45,3 +45,6 @@ Thumbs.db
 # Claude Code
 .tmpclaude*
 tmpclaude*
+
+# Auto Claude data directory
+.auto-claude/

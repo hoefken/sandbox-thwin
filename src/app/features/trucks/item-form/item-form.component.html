@@ -1,0 +1,154 @@
+<div class="item-form-page">
+  <header class="page-header">
+    <a [routerLink]="['/trucks', truckId(), 'compartments', compartmentId()]" class="back-link"
+      >&larr; Back to Compartment</a
+    >
+    <h1>{{ isEditMode() ? 'Edit Item' : 'New Item' }}</h1>
+  </header>
+
+  @if (error()) {
+    <div class="error-banner" role="alert">{{ error() }}</div>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-card">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Name <span class="required">*</span></label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          [attr.aria-invalid]="form.controls.name.invalid && form.controls.name.touched"
+          aria-describedby="name-error"
+        />
+        @if (form.controls.name.invalid && form.controls.name.touched) {
+          <span id="name-error" class="field-error">
+            @if (form.controls.name.errors?.['required']) {
+              Name is required
+            } @else if (form.controls.name.errors?.['maxlength']) {
+              Name must be less than 200 characters
+            }
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category <span class="required">*</span></label>
+        <input
+          id="category"
+          type="text"
+          formControlName="category"
+          [attr.aria-invalid]="form.controls.category.invalid && form.controls.category.touched"
+          aria-describedby="category-error"
+        />
+        @if (form.controls.category.invalid && form.controls.category.touched) {
+          <span id="category-error" class="field-error">
+            @if (form.controls.category.errors?.['required']) {
+              Category is required
+            } @else if (form.controls.category.errors?.['maxlength']) {
+              Category must be less than 100 characters
+            }
+          </span>
+        }
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group form-group-small">
+        <label for="quantity">Quantity <span class="required">*</span></label>
+        <input
+          id="quantity"
+          type="number"
+          formControlName="quantity"
+          min="0"
+          [attr.aria-invalid]="form.controls.quantity.invalid && form.controls.quantity.touched"
+          aria-describedby="quantity-error"
+        />
+        @if (form.controls.quantity.invalid && form.controls.quantity.touched) {
+          <span id="quantity-error" class="field-error">
+            @if (form.controls.quantity.errors?.['required']) {
+              Quantity is required
+            } @else if (form.controls.quantity.errors?.['min']) {
+              Quantity must be 0 or greater
+            }
+          </span>
+        }
+      </div>
+    </div>
+
+    <fieldset class="identifiers-section">
+      <legend>Identifiers (optional)</legend>
+
+      <div class="form-group">
+        <label for="serialNumber">Serial Number</label>
+        <input
+          id="serialNumber"
+          type="text"
+          formControlName="serialNumber"
+          [attr.aria-invalid]="
+            form.controls.serialNumber.invalid && form.controls.serialNumber.touched
+          "
+          aria-describedby="serialNumber-error"
+        />
+        @if (form.controls.serialNumber.invalid && form.controls.serialNumber.touched) {
+          <span id="serialNumber-error" class="field-error">
+            @if (form.controls.serialNumber.errors?.['maxlength']) {
+              Serial number must be less than 100 characters
+            }
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="barcode">Barcode</label>
+        <input
+          id="barcode"
+          type="text"
+          formControlName="barcode"
+          [attr.aria-invalid]="form.controls.barcode.invalid && form.controls.barcode.touched"
+          aria-describedby="barcode-error"
+        />
+        @if (form.controls.barcode.invalid && form.controls.barcode.touched) {
+          <span id="barcode-error" class="field-error">
+            @if (form.controls.barcode.errors?.['maxlength']) {
+              Barcode must be less than 100 characters
+            }
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="assetTag">Asset Tag</label>
+        <input
+          id="assetTag"
+          type="text"
+          formControlName="assetTag"
+          [attr.aria-invalid]="form.controls.assetTag.invalid && form.controls.assetTag.touched"
+          aria-describedby="assetTag-error"
+        />
+        @if (form.controls.assetTag.invalid && form.controls.assetTag.touched) {
+          <span id="assetTag-error" class="field-error">
+            @if (form.controls.assetTag.errors?.['maxlength']) {
+              Asset tag must be less than 100 characters
+            }
+          </span>
+        }
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <a
+        [routerLink]="['/trucks', truckId(), 'compartments', compartmentId()]"
+        class="btn btn-secondary"
+        >Cancel</a
+      >
+      <button type="submit" class="btn btn-primary" [disabled]="loading()">
+        @if (loading()) {
+          Saving...
+        } @else {
+          {{ isEditMode() ? 'Update' : 'Create' }} Item
+        }
+      </button>
+    </div>
+  </form>
+</div>

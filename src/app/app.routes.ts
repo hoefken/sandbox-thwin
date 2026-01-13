@@ -20,6 +20,84 @@ export const routes: Routes = [
           import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent),
       },
       {
+        path: 'trucks',
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('./features/trucks/truck-list/truck-list.component').then(
+                m => m.TruckListComponent
+              ),
+          },
+          {
+            path: 'new',
+            loadComponent: () =>
+              import('./features/trucks/truck-form/truck-form.component').then(
+                m => m.TruckFormComponent
+              ),
+          },
+          {
+            path: ':truckId',
+            children: [
+              {
+                path: '',
+                loadComponent: () =>
+                  import('./features/trucks/truck-detail/truck-detail.component').then(
+                    m => m.TruckDetailComponent
+                  ),
+              },
+              {
+                path: 'edit',
+                loadComponent: () =>
+                  import('./features/trucks/truck-form/truck-form.component').then(
+                    m => m.TruckFormComponent
+                  ),
+              },
+              {
+                path: 'compartments/new',
+                loadComponent: () =>
+                  import('./features/trucks/compartment-form/compartment-form.component').then(
+                    m => m.CompartmentFormComponent
+                  ),
+              },
+              {
+                path: 'compartments/:compartmentId',
+                children: [
+                  {
+                    path: '',
+                    loadComponent: () =>
+                      import('./features/trucks/compartment-detail/compartment-detail.component').then(
+                        m => m.CompartmentDetailComponent
+                      ),
+                  },
+                  {
+                    path: 'edit',
+                    loadComponent: () =>
+                      import('./features/trucks/compartment-form/compartment-form.component').then(
+                        m => m.CompartmentFormComponent
+                      ),
+                  },
+                  {
+                    path: 'items/new',
+                    loadComponent: () =>
+                      import('./features/trucks/item-form/item-form.component').then(
+                        m => m.ItemFormComponent
+                      ),
+                  },
+                  {
+                    path: 'items/:itemId/edit',
+                    loadComponent: () =>
+                      import('./features/trucks/item-form/item-form.component').then(
+                        m => m.ItemFormComponent
+                      ),
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',

@@ -49,14 +49,14 @@ agent-browser screenshot     # Capture current state
 
 ---
 
-## Phase 2: Data Model & Admin CRUD
+## Phase 2: Data Model & Admin CRUD ✓ COMPLETE
 **Goal**: Admins can manage trucks, compartments, and items
 
-- [ ] 2.1 Design Firestore data model (trucks, compartments, items)
-- [ ] 2.2 Create truck management (list, add, edit, delete)
-- [ ] 2.3 Create compartment management per truck
-- [ ] 2.4 Create item management with all identifiers (name, category, quantity, serial, barcode, asset tag)
-- [ ] 2.5 Assign items to compartments with expected quantities
+- [x] 2.1 Design Firestore data model (trucks, compartments, items)
+- [x] 2.2 Create truck management (list, add, edit, delete)
+- [x] 2.3 Create compartment management per truck
+- [x] 2.4 Create item management with all identifiers (name, category, quantity, serial, barcode, asset tag)
+- [x] 2.5 Assign items to compartments with expected quantities
 
 **Deliverable**: Complete inventory structure defined in Firestore
 

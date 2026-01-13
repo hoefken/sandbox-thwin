@@ -1,0 +1,68 @@
+<div class="truck-detail">
+  @if (loading()) {
+    <div class="loading">Loading...</div>
+  } @else if (!truck()) {
+    <div class="not-found">
+      <p>Truck not found</p>
+      <a routerLink="/trucks" class="btn btn-primary">Back to Trucks</a>
+    </div>
+  } @else {
+    <header class="page-header">
+      <div class="header-content">
+        <a routerLink="/trucks" class="back-link">&larr; Back to Trucks</a>
+        <h1>{{ truck()!.name }}</h1>
+        @if (truck()!.description) {
+          <p class="description">{{ truck()!.description }}</p>
+        }
+      </div>
+      <div class="header-actions">
+        <a [routerLink]="['edit']" class="btn btn-secondary">Edit Truck</a>
+      </div>
+    </header>
+
+    <section class="compartments-section">
+      <header class="section-header">
+        <h2>Compartments</h2>
+        <a [routerLink]="['compartments', 'new']" class="btn btn-primary">Add Compartment</a>
+      </header>
+
+      @if (compartments().length === 0) {
+        <div class="empty-state">
+          <p>No compartments yet. Add compartments to organize this truck's inventory.</p>
+        </div>
+      } @else {
+        <div class="compartment-list">
+          @for (compartment of compartments(); track compartment.id) {
+            <div class="compartment-card">
+              <div class="compartment-info">
+                <h3>
+                  <a [routerLink]="['compartments', compartment.id]">{{ compartment.name }}</a>
+                </h3>
+                @if (compartment.description) {
+                  <p>{{ compartment.description }}</p>
+                }
+              </div>
+              <div class="compartment-actions">
+                <a [routerLink]="['compartments', compartment.id, 'edit']" class="btn btn-small"
+                  >Edit</a
+                >
+                <button
+                  type="button"
+                  class="btn btn-small btn-danger"
+                  [disabled]="deletingId() === compartment.id"
+                  (click)="deleteCompartment(compartment)"
+                >
+                  @if (deletingId() === compartment.id) {
+                    Deleting...
+                  } @else {
+                    Delete
+                  }
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </section>
+  }
+</div>

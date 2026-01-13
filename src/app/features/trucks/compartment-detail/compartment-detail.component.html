@@ -1,0 +1,79 @@
+<div class="compartment-detail">
+  @if (loading()) {
+    <div class="loading">Loading...</div>
+  } @else if (!compartment()) {
+    <div class="not-found">
+      <p>Compartment not found</p>
+      <a [routerLink]="['/trucks', truckId()]" class="btn btn-primary">Back to Truck</a>
+    </div>
+  } @else {
+    <header class="page-header">
+      <div class="header-content">
+        <a [routerLink]="['/trucks', truckId()]" class="back-link">&larr; Back to Truck</a>
+        <h1>{{ compartment()!.name }}</h1>
+        @if (compartment()!.description) {
+          <p class="description">{{ compartment()!.description }}</p>
+        }
+      </div>
+      <div class="header-actions">
+        <a [routerLink]="['edit']" class="btn btn-secondary">Edit Compartment</a>
+      </div>
+    </header>
+
+    <section class="items-section">
+      <header class="section-header">
+        <h2>Items</h2>
+        <a [routerLink]="['items', 'new']" class="btn btn-primary">Add Item</a>
+      </header>
+
+      @if (items().length === 0) {
+        <div class="empty-state">
+          <p>No items yet. Add items to this compartment.</p>
+        </div>
+      } @else {
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Qty</th>
+                <th>Serial #</th>
+                <th>Barcode</th>
+                <th>Asset Tag</th>
+                <th class="actions-col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of items(); track item.id) {
+                <tr>
+                  <td class="name-col">{{ item.name }}</td>
+                  <td>{{ item.category }}</td>
+                  <td>{{ item.quantity }}</td>
+                  <td>{{ item.serialNumber || '-' }}</td>
+                  <td>{{ item.barcode || '-' }}</td>
+                  <td>{{ item.assetTag || '-' }}</td>
+                  <td class="actions-col">
+                    <a [routerLink]="['items', item.id, 'edit']" class="btn btn-small">Edit</a>
+                    <button
+                      type="button"
+                      class="btn btn-small btn-danger"
+                      [disabled]="deletingId() === item.id"
+                      (click)="deleteItem(item)"
+                    >
+                      @if (deletingId() === item.id) {
+                        ...
+                      } @else {
+                        Delete
+                      }
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </section>
+  }
+</div>
