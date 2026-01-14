@@ -48,3 +48,12 @@ tmpclaude*
 
 # Auto Claude data directory
 .auto-claude/
+
+# Playwright
+/.playwright/
+/playwright-report/
+/test-results/
+
+# Environment files with secrets
+/src/environments/environment.ts
+/src/environments/environment.prod.ts
